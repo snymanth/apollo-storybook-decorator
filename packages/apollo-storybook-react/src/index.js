@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider as ApolloHooksProvider } from '@apollo/react-hooks';
 import createClient from 'apollo-storybook-core';
 
 export default function initializeApollo({
@@ -33,7 +34,9 @@ export default function initializeApollo({
   function StorybookProvider({ children }) {
     return (
       <Provider client={graphqlClient}>
-        <Fragment>{children}</Fragment>
+        <ApolloHooksProvider client={graphqlClient}>
+          <Fragment>{children}</Fragment>
+        </ApolloHooksProvider>
       </Provider>
     );
   }
